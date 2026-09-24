@@ -74,8 +74,8 @@ def main():
         st.subheader("workout Plan")
         if not workout_started:
             plan_exercise = st.selectbox("Exercise", options=EXERCISE_OPTIONS, key="plan_exercise")
-            plan_sets = st.number_input("Sets", min_value=0, max_value=50, key="plan_sets", step=1)
-            plan_reps = st.number_input("Reps per Set", min_value=0, max_value=50, key="plan_reps", step=1)
+            plan_sets = st.number_input("Sets", min_value=1, max_value=10, key="plan_sets", step=1)
+            plan_reps = st.number_input("Reps per Set", min_value=1, max_value=50, key="plan_reps", step=1)
             st.markdown("")
 
             start_workout = st.button("Start Workout",width="stretch",key="Start_workout")
@@ -174,27 +174,26 @@ def main():
 
             elif exercise == "Deadlift":
                 st.subheader("Deadlift Metrics")
-                st.metric("Back Angle", f"{st.session_state.get('back_angle', 0)}°")
-                st.metric("Hip Angle", f"{st.session_state.get('hip_angle', 0)}°")
-                st.metric("Knee Angle", f"{st.session_state.get('knee_angle', 0)}°")
-                st.metric("Hip Status", st.session_state.get("hip_status", "N/A"))
+                st.metric("Back Angle", f"{st.session_state.back_angle}°")
+                st.metric("Hip Angle", f"{st.session_state.hip_angle}°")
+                st.metric("Knee Angle", f"{st.session_state.knee_angle}°")
+                st.metric("Hip Status", st.session_state.hip_status)
 
             elif exercise == "Tricep Extension":
                 st.subheader("Tricep Extension Metrics")
-                st.metric("Elbow Angle", f"{st.session_state.get('elbow_angle', 0)}°")
-                st.metric("Elbow Status", st.session_state.get("elbow_status", "N/A"))
+                st.metric("Elbow Angle", f"{st.session_state.elbow_angle}°")
+                st.metric("Elbow Status", st.session_state.elbow_status)
 
             elif exercise == "Lateral Raises":
                 st.subheader("Lateral Raise Metrics")
-                st.metric("Shoulder Angle", f"{st.session_state.get('shoulder_angle', 0)}°")
-                st.metric("Raise Status", st.session_state.get("raise_status", "N/A"))
+                st.metric("Shoulder Angle", f"{st.session_state.shoulder_angle}°")
+                st.metric("Raise Status", st.session_state.raise_status)
 
             elif exercise == "Bench Press":
                 st.subheader("Bench Press Metrics")
-                st.metric("Elbow Angle", f"{st.session_state.get('elbow_angle', 0)}°")
-                st.metric("Shoulder Angle", f"{st.session_state.get('shoulder_angle', 0)}°")
-                st.metric("Press Status", st.session_state.get("press_status", "N/A"))
-
+                st.metric("Elbow Angle", f"{st.session_state.elbow_angle}°")
+                st.metric("Shoulder Angle", f"{st.session_state.shoulder_angle}°")
+                st.metric("Press Status", st.session_state.press_status)
                 
     st.title("AI-Powered Fitness Coach")
     st.markdown("#### Real time pose detection with proactive AI voice coaching")
@@ -244,7 +243,7 @@ def main():
         sync_metrics_update(context)
 
         if context.state.playing:
-            time.sleep(0.25)
+            time.sleep(1)
             st.rerun()
 
         inject_webrtc_styles()

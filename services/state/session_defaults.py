@@ -27,6 +27,8 @@ def initial_session_defaults():
         "elbow_angle": 0,
         "front_knee_angle": 0,
         "torso_angle": 0,
+        "hip_angle": 0,
+        "shoulder_angle": 0,
 
         # Status fields
         "depth_status": "N/A",
@@ -37,6 +39,9 @@ def initial_session_defaults():
         "extension_status": "N/A",
         "back_arch_status": "N/A",
         "balance_status": "N/A",
+        "elbow_status": "N/A",
+        "raise_status": "N/A",
+        "press_status": "N/A",
     }
 
     for key, value in defaults.items():
